@@ -1,14 +1,14 @@
-# Aphrodite terminal theme
+# Aphrodite Terminal Theme
 
 Minimalistic Aphrodite theme does not have any visual noise. Displays only the necessary information: current user, hostname, working directory, git branch if exists.
 Looks great both with dark and white terminals.
 
-![Aphrodite terminal theme](https://user-images.githubusercontent.com/11278181/30212017-d5688bda-94ab-11e7-946a-ab59fb65fd7b.png)
+![Aphrodite Terminal Theme](https://user-images.githubusercontent.com/11278181/30273006-cd4f5b44-96ff-11e7-9519-de71cae726e6.png)
 
 ## Installation 
 
 ### Requirements
-- Unix-like operating system
+- UNIX-like OS (Linux, macOS, BSD)
 - wget and git installed
 
 ### Zsh
