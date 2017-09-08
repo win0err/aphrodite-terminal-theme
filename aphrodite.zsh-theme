@@ -1,51 +1,58 @@
-ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[green]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[yellow]%}"
+#!/usr/bin/env zsh
+
+# ------------------------------------------------------------------------------
+#
+# Aphrodite Terminal Theme
+#
+# Author: Sergei Kolesnikov
+# https://github.com/win0err/aphrodite-terminal-theme
+#
+# ------------------------------------------------------------------------------
+
+ZSH_THEME_GIT_PROMPT_PREFIX=" %F{10}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%f"
+ZSH_THEME_GIT_PROMPT_DIRTY="%f%F{11}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-local welcome_symbol='\$'
-[ $EUID -ne 0 ] || welcome_symbol='#'
+aphrodite_get_welcome_symbol() {
 
-local DEFAULT=39
-local BLACK=30
-local RED=31
-local GREEN=32
-local YELLOW=33
-local BLUE=34
-local MAGENTA=35
-local CYAN=36
-local GRAY=37
-local DARK_GRAY=90
-local LIGHT_RED=91
-local LIGHT_GREEN=92
-local LIGHT_YELLOW=93
-local LIGHT_BLUE=94
-local LIGHT_MAGENTA=95
-local LIGHT_CYAN=96
-local WHITE=97
-
-get_color_by_code() {
-	echo $'\e[0;'${1}'m'
+	echo -n "%(?..%F{1})"
+	
+	local welcome_symbol='$'
+	[ $EUID -ne 0 ] || welcome_symbol='#'
+	
+	echo -n $welcome_symbol
+	echo -n "%(?..%f)"
 }
 
-local ret_status="%(?.%{$reset_color%}.%{$fg[red]%})"
+# local aphrodite_get_time="%F{grey}[%*]%f"
 
-# local time_str="%{$fg[grey]%}[%*]%{$reset_color%}"
+aphrodite_get_current_branch() {
 
-get_current_branch() {
 	local branch=$(git_current_branch)
+	
 	if [ -n "$branch" ]; then
-		echo "${ZSH_THEME_GIT_PROMPT_PREFIX}$(parse_git_dirty)‹${branch}›${ZSH_THEME_GIT_PROMPT_SUFFIX}"
+		echo -n $ZSH_THEME_GIT_PROMPT_PREFIX
+		echo -n $(parse_git_dirty)
+		echo -n "‹${branch}›"
+		echo -n $ZSH_THEME_GIT_PROMPT_SUFFIX
 	fi
+}
+
+aphrodite_get_prompt() {
+
+	# 256-colors check (will be used later): tput colors
+	
+	echo -n "%F{6}%n%f" # User
+	echo -n "%F{8}@%f" # at
+	echo -n "%F{12}%m%f" # Host
+	echo -n "%F{8}:%f" # in 
+	echo -n "%{$reset_color%}%~" # Dir
+	echo -n "$(aphrodite_get_current_branch)" # Git branch
+	echo -n "\n"
+	echo -n "$(aphrodite_get_welcome_symbol)%{$reset_color%} " # $ or #
 }
 
 export GREP_COLOR='1;31'
 
-PROMPT='\
-$(get_color_by_code $CYAN)%n\
-$(get_color_by_code $DARK_GRAY)@\
-$(get_color_by_code $LIGHT_BLUE)%m\
-$(get_color_by_code $DARK_GRAY):\
-$(get_color_by_code $DEFAULT)%~\
-$(get_current_branch)
-${ret_status}'${welcome_symbol}'%{$reset_color%} '
+PROMPT='$(aphrodite_get_prompt)'
