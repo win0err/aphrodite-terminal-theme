@@ -15,7 +15,7 @@ Looks great both with dark and white terminals.
 [**Oh My Zsh**](https://github.com/robbyrussell/oh-my-zsh)
 ```sh
 mkdir -p ~/.oh-my-zsh/custom/themes/
-wget -xqO ~/.oh-my-zsh/custom/themes/aphrodite.zsh-theme https://git.io/v5ohc
+wget -xqO ~/.oh-my-zsh/custom/themes/aphrodite.zsh-theme https://raw.githubusercontent.com/win0err/aphrodite-terminal-theme/master/aphrodite.zsh-theme
 sed -i.bak 's/^[[:space:]]*ZSH_THEME=.*/ZSH_THEME="aphrodite"/' ~/.zshrc
 source ~/.zshrc 
 ```
