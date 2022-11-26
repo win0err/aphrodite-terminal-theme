@@ -13,7 +13,7 @@ Looks great both with dark and white terminals.
    ```sh
    wget -O ~/.config/fish/functions/fish_prompt.fish https://raw.githubusercontent.com/win0err/aphrodite-terminal-theme/master/fish/fish_prompt.fish
    ```
-> **Author's notice:** Looks even cooler when theme is set to None `fish_config theme choose None` and autosuggestions are disabled `echo 'set -g fish_autosuggestion_enabled 0' >> ~/.config/fish/config.fish`.
+> **Author's note:** It looks even cooler when theme is set to `None` (`fish_config theme choose None`) and autosuggestions are disabled (`echo 'set -g fish_autosuggestion_enabled 0' >> ~/.config/fish/config.fish`).
 
 ### **zsh** — the Z shell
 
