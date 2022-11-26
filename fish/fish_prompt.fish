@@ -26,7 +26,7 @@ function fish_prompt --description Aphrodite
 	echo -n (set_color brblack)'@'
 	echo -n (set_color brblue)(prompt_hostname)
 	echo -n (set_color brblack)':'
-	echo -n (set_color brwhite)(prompt_pwd -D 64)
+	echo -n (set_color normal)(prompt_pwd -D 64)
 	echo -n ' '
 
 	set -l git_branch (git --no-optional-locks branch --show-current 2> /dev/null)
