@@ -36,7 +36,7 @@ A minimalistic terminal theme (prompt) that does not have any visual noise. Disp
    ```
 
 > **Author's note:** It looks even cooler when: \
-> a) theme is set to `None`: `fish_config theme choose None`, \
+> a) theme is set to `None`: `fish_config theme save None`, \
 > b) autosuggestions are disabled: `echo 'set -g fish_autosuggestion_enabled 0' >> ~/.config/fish/config.fish`.
 
 ### bash — GNU Bourne-Again SHell
