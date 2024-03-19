@@ -29,7 +29,7 @@ function fish_prompt --description Aphrodite
 	echo -n (set_color normal)(prompt_pwd -D 64)
 	echo -n ' '
 
-	set -l git_branch (git --no-optional-locks branch --show-current 2> /dev/null)
+	set -l git_branch (git --no-optional-locks rev-parse --abbrev-ref HEAD 2> /dev/null)
 	if test -n "$git_branch"
 		set -l git_status (git --no-optional-locks status --porcelain 2> /dev/null | tail -n 1)
 

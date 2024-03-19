@@ -31,7 +31,7 @@ aphrodite_get_prompt() {
 	echo -n "%f%~"
 	echo -n " "
 
-	local git_branch=$(git --no-optional-locks branch --show-current 2> /dev/null)
+	local git_branch=$(git --no-optional-locks rev-parse --abbrev-ref HEAD 2> /dev/null)
 	if [[ -n "$git_branch" ]]; then
 		local git_status=$(git --no-optional-locks status --porcelain 2> /dev/null | tail -n 1)
 		[[ -n "$git_status" ]] && echo -n "%F{11}" || echo -n "%F{10}"

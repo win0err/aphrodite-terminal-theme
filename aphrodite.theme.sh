@@ -26,7 +26,7 @@ __aphrodite_update_prompt_data() {
 
 	__aphrodite_git=''
 	__aphrodite_git_color=$(tput setaf 10)  # clean
-	local git_branch=$(git --no-optional-locks branch --show-current 2> /dev/null)
+	local git_branch=$(git --no-optional-locks rev-parse --abbrev-ref HEAD 2> /dev/null)
 	if [[ -n "$git_branch" ]]; then
 		local git_status=$(git --no-optional-locks status --porcelain 2> /dev/null | tail -n 1)
 		[[ -n "$git_status" ]] && __aphrodite_git_color=$(tput setaf 11)  # dirty
