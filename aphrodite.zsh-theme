@@ -20,7 +20,7 @@ setopt PROMPT_SUBST
 
 
 aphrodite_get_prompt() {
-	if (( ${+VIRTUAL_ENV} )); then
+	if [[ -n "$VIRTUAL_ENV" ]]; then
 		echo -n "%F{7}["$(basename "$VIRTUAL_ENV")"]%f "
 	fi
 

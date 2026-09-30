@@ -20,7 +20,7 @@ function fish_prompt --description Aphrodite
 	test $status = 0; and set retc normal
 
 	set -g VIRTUAL_ENV_DISABLE_PROMPT true
-	set -q VIRTUAL_ENV; and echo -n (set_color white)'['(basename "$VIRTUAL_ENV")'] '
+	test -n "$VIRTUAL_ENV"; and echo -n (set_color white)'['(basename "$VIRTUAL_ENV")'] '
 
 	echo -n (set_color cyan)$USER
 	echo -n (set_color brblack)'@'
