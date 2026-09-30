@@ -24,6 +24,17 @@ __aphrodite_update_prompt_data() {
 	__aphrodite_venv=''
 	[[ -n "$VIRTUAL_ENV" ]] && __aphrodite_venv=$(basename "$VIRTUAL_ENV")
 
+	__aphrodite_ssh=''
+	__aphrodite_ssh_color=''
+	__aphrodite_ssh_open=''
+	__aphrodite_ssh_close=''
+	if [[ -n "$SSH_CONNECTION" ]]; then
+		__aphrodite_ssh='ssh'
+		__aphrodite_ssh_color=$(tput setaf 13)
+		__aphrodite_ssh_open='['
+		__aphrodite_ssh_close=']'
+	fi
+
 	__aphrodite_git=''
 	__aphrodite_git_color=$(tput setaf 10)  # clean
 	local git_branch=$(git --no-optional-locks rev-parse --abbrev-ref HEAD 2> /dev/null)
@@ -53,9 +64,10 @@ PS1+='\[$(tput setaf 7)\]$(echo -ne $__aphrodite_venv)\[$(tput sgr0)\]'
 PS1+='\[$(tput setaf 6)\]\u'
 PS1+='\[$(tput setaf 8)\]@'
 PS1+='\[$(tput setaf 12)\]\h'
+PS1+='\[$(tput setaf 8)\]$(echo -ne $__aphrodite_ssh_open)\[$(echo -ne $__aphrodite_ssh_color)\]$(echo -ne $__aphrodite_ssh)\[$(tput setaf 8)\]$(echo -ne $__aphrodite_ssh_close)'
 PS1+='\[$(tput setaf 8)\]:'
 PS1+='\[$(tput sgr0)\]\w '
 PS1+='\[$(echo -ne $__aphrodite_git_color)\]$(echo -ne $__aphrodite_git)\[$(tput sgr0)\] '
-PS1+='\[$(tput setaf 8)\]\[$([[ -n "$APHRODITE_THEME_SHOW_TIME" ]] && echo -n "[\t]")\]\[$(tput sgr0)\]'
+PS1+='\[$(tput setaf 8)\]$([[ -n "$APHRODITE_THEME_SHOW_TIME" ]] && echo -n "[$(date +%H:%M:%S)]")\[$(tput sgr0)\]'
 PS1+='\[$(tput sgr0)\]\n'
 PS1+='\[$(echo -ne $__aphrodite_prompt_symbol_color)\]\$\[$(tput sgr0)\] '

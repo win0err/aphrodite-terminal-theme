@@ -27,6 +27,7 @@ aphrodite_get_prompt() {
 	echo -n "%F{6}%n"
 	echo -n "%F{8}@"
 	echo -n "%F{12}%m"
+	(( ${+SSH_CONNECTION} )) && echo -n "%F{8}[%F{13}ssh%F{8}]%f"
 	echo -n "%F{8}:"
 	echo -n "%f%~"
 	echo -n " "

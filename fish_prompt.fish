@@ -25,6 +25,7 @@ function fish_prompt --description Aphrodite
 	echo -n (set_color cyan)$USER
 	echo -n (set_color brblack)'@'
 	echo -n (set_color brblue)(prompt_hostname)
+	set -q SSH_CONNECTION; and echo -n (set_color brblack)'['(set_color brmagenta)'ssh'(set_color brblack)']'
 	echo -n (set_color brblack)':'
 	echo -n (set_color normal)(prompt_pwd -D 64)
 	echo -n ' '
